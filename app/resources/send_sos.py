@@ -8,8 +8,8 @@ from twilio.rest import Client
 from app.models import Patient
 
 # Twilio credentials
-account_sid = 'ACfed2bbf0b59a6eeaac7637c4a2d04d83'
-auth_token = 'f827db0f1295dfde482c392a255a0892'
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
 twilio_number = '+15067045241'
 client = Client(account_sid, auth_token)
 hospital_number = '+14376610738'
