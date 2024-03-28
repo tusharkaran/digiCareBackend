@@ -3,9 +3,9 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api, Resource
 from dotenv import load_dotenv
 import os
-# from flask_restful_swagger_2 import Api as SwaggerApi
+from flask_restful_swagger_2 import Api as SwaggerApi
 import boto3
-from app.resources import PatientRegistration, PatientLogin, DoctorRegistration, DoctorLogin, GetAvailTimeSlot
+from app.resources import PatientRegistration, PatientLogin, DoctorRegistration, DoctorLogin, GetAvailTimeSlot, SendSOS
 from flask_cors import CORS
 # Load environment variables from .env file
 load_dotenv()
@@ -66,6 +66,7 @@ from app.resources.latest_record import LatestRecord
 from app.resources.timeSlots_resource import TimeSlots
 from app.resources.appointment_resource import AppointmentResource
 from app.resources.appointment_doctor_resource import AppointmentDoctorResource
+from app.resources.adminLogin import AdminLogin
 
 api.add_resource(PatientAllResources, '/api/patient')
 api.add_resource(DoctorAllResources, '/api/doctors')
@@ -88,5 +89,7 @@ api.add_resource(TimeSlots, '/api/time-slots/<username>')
 api.add_resource(AppointmentResource, '/api/book-appointment/<username>')
 api.add_resource(AppointmentDoctorResource, '/api/book-appointment/doctor/<doctor_username>')
 api.add_resource(GetAvailTimeSlot,'/api/avail-doc-appointment/<doctor_username>')
-# swagger = SwaggerApi(app, api_spec_url='/apidocs')
+api.add_resource(AdminLogin, '/api/admin-login')
+api.add_resource(SendSOS, '/api/send-sos/<username>')
+swagger = SwaggerApi(app, api_spec_url='/apidocs')
 

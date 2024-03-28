@@ -2,8 +2,8 @@ from flask_restful import Resource, reqparse
 from flask import abort, request
 from app.models.record import RecordedData
 from uuid import uuid4
-from simulation import HealthRecorder
-import tkinter as tk
+# from simulation import HealthRecorder
+# import tkinter as tk
 
 
 class RecordedDataResource(Resource):
@@ -43,7 +43,7 @@ class RecordedDataResource(Resource):
         parser.add_argument('bloodpressure', type=str, required=True)
         parser.add_argument('heart_rate', type=str, required=True)
         parser.add_argument('o2', type=str, required=True)
-        parser.add_argument('sugar_level', type=str, required=True)
+        parser.add_argument('temperature', type=str, required=True)
         args = parser.parse_args()
 
         try:

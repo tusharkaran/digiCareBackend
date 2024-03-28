@@ -13,7 +13,6 @@ class PatientRegistration(Resource):
         parser.add_argument('DOB', type=str, required=True)
         parser.add_argument('gender', type=str, required=True)
         parser.add_argument('address', type=str, required=True)
-        parser.add_argument('doctors', type=list, required=True)
         parser.add_argument('password', type=str, required=True)
         args = parser.parse_args()
 

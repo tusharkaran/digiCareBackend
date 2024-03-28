@@ -32,7 +32,7 @@ class Appointment:
        # room_id = patient_record.get('room_id')
         appointment_instance = cls()
         appointment_instance.bookTimeSlot(doctor_username,time,day)
-
+        room_id = Patient.get_room_id_by_username(username)
         item = {
             "id": str(uuid.uuid4()),
             "patient_username": username,
@@ -41,7 +41,7 @@ class Appointment:
             "day": day,
             "time": time,
             "description": description,
-            "room_id": "123"
+            "room_id": room_id
         }
         response = global_table.put_item(Item=item)
         return response
@@ -104,8 +104,8 @@ class Appointment:
     def bookTimeSlot(self, doctor_username, start_time, day):
         # Query the table to find the item with matching attributes
         response = global_table.scan(
-            FilterExpression='#d = :day AND doctor_username = :doctor_username AND start_time = :start_time',
-            ExpressionAttributeNames={'#d': 'day'},  # Use ExpressionAttributeNames to handle reserved keyword
+            FilterExpression='day_name = :day AND doctor_username = :doctor_username AND start_time = :start_time',
+          #  ExpressionAttributeNames={'#d': 'day'},  # Use ExpressionAttributeNames to handle reserved keyword
             ExpressionAttributeValues={
                 ':doctor_username': doctor_username,
                 ':start_time': start_time,

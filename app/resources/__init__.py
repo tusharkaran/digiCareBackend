@@ -10,3 +10,4 @@ from .patientRegistration import PatientRegistration
 from .recorded_data import RecordedDataResource
 from .latest_record import LatestRecord
 from .get_aval_time_slots import GetAvailTimeSlot
+from .send_sos import SendSOS
